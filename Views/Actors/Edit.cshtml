@@ -1,40 +1,40 @@
-﻿@model Actor
+@model Actor
 
 @{
-    ViewData["Title"] = "Adicionar novo ator";
+    ViewData["Title"] = "Editar ator";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Adicionar Novo Ator</h1>
+            <h1>Editar <strong>@Model.FullName</strong></h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
+                <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="mb-2 text-center">
-                        <img id="ProfilePicturePreview" style="max-width: 250px;" />
+                        <img id="ProfilePicturePreview" style="max-width: 150px;"/>
                     </div>
                     <div class="mb-2">
                         <label asp-for="ProfilePictureURL" class="control-label"></label>
-                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <input asp-for="ProfilePictureURL" class="form-control"/>
                         <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
                     </div>
                     <div class="mb-2">
                         <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" />
+                        <input asp-for="FullName" class="form-control"/>
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="mb-2">
                         <label asp-for="Bio" class="control-label"></label>
-                        <input asp-for="Bio" class="form-control" />
+                        <input asp-for="Bio" class="form-control"/>
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
 
                     <div class="">
-                        <input type="submit" value="Criar" class="btn btn-outline-success float-end" />
-                        <a class="btn btn-outline-secondary" asp-action="Index">Ver todos</a>
+                        <input class="btn btn-outline-success float-end" type="submit">Salvar</input>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Voltar</a>
                     </div>
                 </form>
             </div>

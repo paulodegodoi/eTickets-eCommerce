@@ -12,6 +12,7 @@ namespace eTickets.Models
         public string? ProfilePictureURL { get; set; }
 
         [Display(Name = "Nome")]
+        [Required(ErrorMessage = "O nome do ator é obrigatório.")]
         public string? FullName { get; set; }
 
         [Display(Name = "Biografia")]

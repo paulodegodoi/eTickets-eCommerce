@@ -1,42 +1,43 @@
-﻿@model Actor
+@model Actor
 
 @{
-    ViewData["Title"] = "Adicionar novo ator";
+    ViewData["Title"] = "Deletar ator";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Adicionar Novo Ator</h1>
+            <h1>Deseja deletar este ator?</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="mb-2 text-center">
-                        <img id="ProfilePicturePreview" style="max-width: 250px;" />
+                        <img id="ProfilePicturePreview" style="max-width: 150px;"/>
                     </div>
                     <div class="mb-2">
                         <label asp-for="ProfilePictureURL" class="control-label"></label>
-                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <input asp-for="ProfilePictureURL" class="form-control" readonly/>
                         <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
                     </div>
                     <div class="mb-2">
                         <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" />
+                        <input asp-for="FullName" class="form-control" readonly/>
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="mb-2">
                         <label asp-for="Bio" class="control-label"></label>
-                        <input asp-for="Bio" class="form-control" />
+                        <input asp-for="Bio" class="form-control" readonly/>
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
 
                     <div class="">
-                        <input type="submit" value="Criar" class="btn btn-outline-success float-end" />
-                        <a class="btn btn-outline-secondary" asp-action="Index">Ver todos</a>
+                        <form asp-action="DeleteConfirmed">
+                            <input hidden asp-for="Id" />
+                            <button class="btn btn-outline-danger float-end" type="submit">Deletar</button>
+                        </form>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Voltar</a>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -48,11 +49,6 @@
     $(document).ready(function () {
         let output = document.getElementById("ProfilePicturePreview");
         output.src = $("#ProfilePictureURL").val();
-    })
-    
-    $("#ProfilePictureURL").on("change", function() {
-        let output = document.getElementById("ProfilePicturePreview");
-        output.src = $(this).val();
     })
         
     </script>

@@ -1,4 +1,5 @@
 ﻿using eTickets.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data.Services
@@ -15,23 +16,28 @@ namespace eTickets.Data.Services
         {
             return await _context.Actors.ToListAsync();   
         }
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Actors.FirstOrDefaultAsync(n => n.Id == id);
         }
         public void Add(Actor actor)
         {
-            throw new NotImplementedException();
+            _context.Actors.Add(actor);
+            _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var actorToRemove = await GetByIdAsync(id);
+            _context.Actors.Remove(actorToRemove);
+            await _context.SaveChangesAsync();
         }
 
-        public Actor Update(int id, Actor updatedActor)
+        public async Task<Actor> UpdateAsync(int id, Actor actorUpdated)
         {
-            throw new NotImplementedException();
+            _context.Actors.Update(actorUpdated);
+            await _context.SaveChangesAsync();
+            return actorUpdated;
         }
     }
 }
